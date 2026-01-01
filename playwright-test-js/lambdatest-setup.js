@@ -58,22 +58,22 @@ const modifyCapabilities = (configName, testName) => {
 
 exports.test = base.test.extend({
   page: async ({ page, playwright }, use, testInfo) => {
-    // Configure LambdaTest platform for cross-browser testing
+    
     let fileName = testInfo.file.split(path.sep).pop()
     if (testInfo.project.name.match(/lambdatest/)) {
       modifyCapabilities(testInfo.project.name, `${testInfo.title} - ${fileName}`)
       let device, context, browser, ltPage;
 
-      // Check if its a desktop or an android test
+      
       if (testInfo.project.name.match(/android/)) {
-        // Android test
+        
         device = await _android.connect(`wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`);
         await device.shell("am force-stop com.android.chrome");
     
         context = await device.launchBrowser();
         ltPage = await context.newPage(testInfo.project.use);
       } else {
-        // Desktop test
+        
         browser = await chromium.connect(`wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`)
         ltPage = await browser.newPage(testInfo.project.use)
       }
@@ -95,7 +95,7 @@ exports.test = base.test.extend({
       await browser?.close()
       await device?.close();
     } else {
-      // Run tests in local in case of local config provided
+      
       await use(page)
     }
   },

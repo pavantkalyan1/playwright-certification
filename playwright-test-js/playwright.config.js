@@ -5,7 +5,7 @@ const config = {
   testDir: 'tests',
   testMatch: '**/*.spec.js',
   timeout: 300000,
-  workers: 4,
+  workers: 2,
   use: {},
   projects: [
     // -- LambdaTest Config --
@@ -13,25 +13,19 @@ const config = {
     // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
     // Use additional configuration options provided by Playwright if required: https://playwright.dev/docs/api/class-testconfig
     {
-      name: 'chrome:latest:MacOS Ventura@lambdatest',
+      name: 'pw-chromium:latest:Windows 10@lambdatest',
+      use: {
+        viewport: { width: 1280, height: 720 }
+      }
+    },
+    {
+      name: 'pw-firefox:latest:MacOS Catalina@lambdatest',
       use: {
         viewport: { width: 1920, height: 1080 }
       }
     },
     {
       name: 'chrome:latest:Windows 11@lambdatest',
-      use: {
-        viewport: { width: 1280, height: 720 }
-      }
-    },
-    {
-      name: 'MicrosoftEdge:109:MacOS Ventura@lambdatest',
-      use: {
-        ...devices['iPhone 12 Pro Max']
-      }
-    },
-    {
-      name: 'pw-firefox:latest:Windows 10@lambdatest',
       use: {
         viewport: { width: 1280, height: 720 }
       }
