@@ -7,3 +7,4 @@
 ## Running your tests
 - To run a single test, run 
   ```npm run test```
+# run scenario_1,scenario_2,scenario_3
